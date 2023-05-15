@@ -201,9 +201,7 @@ class _page2State extends State<page2> {
           var bit = await img.toByteData(format: ImageByteFormat.png);
           var uList = bit!.buffer.asUint8List();
 
-          print("=================================");
-          print(uList.toString());
-          print("=================================");
+          
 
           if (uList != null) {
             Directory dir = await getApplicationDocumentsDirectory();
@@ -214,9 +212,7 @@ class _page2State extends State<page2> {
                 .create();
             await file.writeAsBytes(uList);
 
-            print("=================================");
-            print("Image path: ${file.path}");
-            print("=================================");
+           
 
             Share.shareXFiles([XFile(file.path)]);
           }
