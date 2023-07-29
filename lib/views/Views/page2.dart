@@ -17,7 +17,6 @@ class page2 extends StatefulWidget {
 }
 
 class _page2State extends State<page2> {
-  @override
   int sloagnin = 0;
   GlobalKey imageKey = GlobalKey();
   Widget build(BuildContext context) {
@@ -39,9 +38,12 @@ class _page2State extends State<page2> {
               child: Stack(alignment: Alignment.center, children: [
                 SizedBox(
                   width: s.width,
-                  child: Image.network(
-                    image[index],
-                    filterQuality: FilterQuality.low,
+                  child: Opacity(
+                    opacity: 0.5,
+                    child: Image.network(
+                      image[index],
+                      filterQuality: FilterQuality.low,
+                    ),
                   ),
                 ),
                 Text(
@@ -201,8 +203,6 @@ class _page2State extends State<page2> {
           var bit = await img.toByteData(format: ImageByteFormat.png);
           var uList = bit!.buffer.asUint8List();
 
-          
-
           if (uList != null) {
             Directory dir = await getApplicationDocumentsDirectory();
 
@@ -211,8 +211,6 @@ class _page2State extends State<page2> {
                     "${dir.path}/FA${d.year}${d.month}${d.day}${d.hour}${d.minute}${d.second}.png")
                 .create();
             await file.writeAsBytes(uList);
-
-           
 
             Share.shareXFiles([XFile(file.path)]);
           }
